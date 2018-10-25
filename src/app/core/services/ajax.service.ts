@@ -7,7 +7,7 @@ import { NotificationService } from './notification.service';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-const appUrl = 'http://54.187.255.230:8080/';
+const appUrl = 'http://35.171.150.178:8080/';
 
 @Injectable()
 export class AjaxService {
@@ -21,6 +21,10 @@ export class AjaxService {
     private _notificationService: NotificationService
   ) {
     this._headers.set('Content-Type', 'application/json');
+    // this._headers.set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, DELETE, PUT');
+    // this._headers.set('Access-Control-Allow-Origin', '*');
+    // this._headers.set('Access-Control-Allow-Headers', "X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding");
+
   }
 
   private _getHeaders(custom_headers?: any): HttpHeaders {
