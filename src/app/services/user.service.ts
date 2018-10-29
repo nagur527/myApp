@@ -11,4 +11,7 @@ export class UserService {
   login(credentials): Observable<any> {
     return this.ajaxService.request({ method: 'POST', url: 'token/generate-token', payload: credentials });
   }
+  getUserDetails(name: string): Observable<any> {
+    return this.ajaxService.request({ method: 'POST', url: 'user/userDetails' });
+  }
 }

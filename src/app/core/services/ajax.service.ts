@@ -27,22 +27,6 @@ export class AjaxService {
 
   }
 
-  private _getHeaders(custom_headers?: any): HttpHeaders {
-
-    const access_token: string = this._storageService.getItem('access_token');
-    if (access_token) {
-      this._headers.set('Authorization', 'Bearer ' + access_token);
-    }
-    if (custom_headers) {
-      for (const headerType in custom_headers) {
-        if (headerType) {
-          this._headers.set(headerType, custom_headers[headerType]);
-        }
-      }
-    }
-    return this._headers;
-  }
-
   public request(options: any): Observable<any> {
     if (options.url.indexOf('http') === -1 && options.url.indexOf('https') === -1) {
       options.url = appUrl + options.url;
@@ -51,7 +35,7 @@ export class AjaxService {
     return Observable.create(observer => {
       return this._http.request((options.method ? options.method : 'GET'), options.url, {
         body: (options.payload),
-        headers: (options.headers ? this._getHeaders(options.headers) : this._getHeaders())
+        headers: options.headers
       }).subscribe(data => {
         observer.next(data);
         observer.complete();
